@@ -8,6 +8,12 @@ Problem goes away if you downgrade google mutant to 0.10.0
 
 In the project directory, you can run:
 
+### `yarn`
+
+Installs dependencies
+
+If you don't have yarn, install it by running `npm i -g yarn`
+
 ### `yarn start`
 
 Runs the app in the development mode.\
