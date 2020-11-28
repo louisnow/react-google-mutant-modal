@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Demo Repo for Google Mutant Error
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://gitlab.com/IvanSanchez/Leaflet.GridLayer.GoogleMutant/-/issues/118
+
+Problem goes away if you downgrade google mutant to 0.10.0
 
 ## Available Scripts
 
