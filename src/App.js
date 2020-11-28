@@ -1,16 +1,23 @@
-import { useState, useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import { MapComponent } from './map';
-import { Loader } from '@googlemaps/js-api-loader';
+import { Button, Modal } from '@material-ui/core';
 import './App.css';
 
 function App() {
-  const [googleLoaded, setGoogleLoaded] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  // useEffect
+  const openModal = useCallback(() => setOpen(true));
+
+  const onClose = useCallback(() => setOpen(false));
 
   return (
     <div>
-      <MapComponent className="mappane"></MapComponent>
+      <Button onClick={openModal}>Open Map in Modal</Button>
+      <Modal open={open} onClose={onClose}>
+        <div>
+          <MapComponent className="mappane"></MapComponent>
+        </div>
+      </Modal>
     </div>
   );
 }

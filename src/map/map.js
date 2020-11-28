@@ -1,28 +1,36 @@
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import './map.css';
+import { Map as MapContainer, TileLayer } from 'react-leaflet';
+import { Loader } from '@googlemaps/js-api-loader';
+
 import GoogleMutant from './google-mutant';
 
-function MapComponent(props) {
-  return (
-    <MapContainer
-      className="mapcontainer"
-      center={[51.505, -0.09]}
-      zoom={13}
-      scrollWheelZoom={false}
-    >
-      {/* <GoogleMutant type="roadmap" /> */}
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-    </MapContainer>
-  );
+class MapComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      googleLoaded: false,
+    };
+  }
+
+  componentDidMount() {
+    const loader = new Loader({ apiKey: process.env.REACT_APP_GMAPS_KEY });
+    loader.load().then(() => this.setState({ googleLoaded: true }));
+  }
+
+  render() {
+    return (
+      <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+        {!this.state.googleLoaded ? (
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+        ) : (
+          <GoogleMutant type="roadmap" />
+        )}
+      </MapContainer>
+    );
+  }
 }
 
 export default MapComponent;

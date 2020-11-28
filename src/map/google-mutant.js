@@ -1,20 +1,23 @@
-import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet.gridlayer.googlemutant';
-import { useLeafletContext } from '@react-leaflet/core';
+import { withLeaflet, MapLayer } from 'react-leaflet';
 
-function GoogleMutant(props) {
-  const context = useLeafletContext();
-  const googlemutantRef = useRef();
+/**
+ * Source code of MapLayer
+ * https://github.com/PaulLeCam/react-leaflet/blob/v2/src/MapLayer.js
+ *
+ * this.layerContainer.removeLayer(this.leafletElement) errors out
+ */
 
-  useEffect(() => {
-    const type = props.type || 'roadmap';
-    googlemutantRef.current = L.gridLayer.googleMutant({ type: type });
-    const { map } = context;
-    googlemutantRef.current.addTo(map);
-  }, []);
-
-  return null;
-}
+const GoogleMutant = withLeaflet(
+  class extends MapLayer {
+    createLeafletElement(props) {
+      const type = props.type || 'roadmap';
+      return new L.gridLayer.googleMutant({
+        type,
+      });
+    }
+  },
+);
 
 export default GoogleMutant;
