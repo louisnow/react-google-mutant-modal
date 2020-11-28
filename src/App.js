@@ -1,23 +1,16 @@
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
+import { MapComponent } from './map';
+import { Loader } from '@googlemaps/js-api-loader';
 import './App.css';
 
 function App() {
+  const [googleLoaded, setGoogleLoaded] = useState(false);
+
+  // useEffect
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MapComponent className="mappane"></MapComponent>
     </div>
   );
 }
