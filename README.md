@@ -16,7 +16,7 @@ If you don't have yarn, install it by running `npm i -g yarn`
 
 ### `.env`
 
-Copy `example.env` to `.env` at the root of the project and add your google maps API key to ensure google mutant is being used. Will not work without a valid key, falls back to default OSM tile layer.
+Optionally, if you want to use your own API key copy `example.env` to `.env` at the root of the project.
 
 ### `yarn start`
 
