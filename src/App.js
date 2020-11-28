@@ -6,9 +6,9 @@ import './App.css';
 function App() {
   const [open, setOpen] = useState(false);
 
-  const openModal = useCallback(() => setOpen(true));
+  const openModal = useCallback(() => setOpen(true), []);
 
-  const onClose = useCallback(() => setOpen(false));
+  const onClose = useCallback(() => setOpen(false), []);
 
   return (
     <div>
